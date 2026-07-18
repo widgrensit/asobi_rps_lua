@@ -42,7 +42,8 @@ asobi deploy prod lua
 
 The browser demo authenticates anonymously via `POST /api/v1/auth/guest`, so
 visitors never create an account. That is opt-in via a two-key model: the game
-sets `guest_auth = true` in `match.lua` (already set here), and the operator
+sets `guest_auth = true` in its game config (this multi-mode game declares it in
+`config.lua`, the manifest read at load; already set here), and the operator
 supplies a strong `ASOBI_GUEST_VERIFIER_PEPPER` (>= 32 bytes). On managed cloud
 the pepper is provisioned per environment automatically; self-hosting, you set it
 yourself. A short or raw-bytes pepper fails closed, and until both halves are
