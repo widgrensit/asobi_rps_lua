@@ -41,9 +41,11 @@ asobi deploy prod lua
 ```
 
 The browser demo authenticates anonymously via `POST /api/v1/auth/guest`, so
-visitors never create an account. That is opt-in (`guest_auth` +
-`guest_verifier_pepper`); enable it on the environment. Until it is enabled the
-endpoint 404s and the samples-page widget shows a self-host card instead.
+visitors never create an account. That is opt-in: set `ASOBI_GUEST_AUTH=true`
+and a strong `ASOBI_GUEST_VERIFIER_PEPPER` (a base64 pepper from >= 32 random
+bytes, e.g. `openssl rand -base64 48`) on the environment. A short or raw-bytes
+pepper fails closed. Until it is enabled the endpoint 404s and the samples-page
+widget shows a self-host card instead.
 
 ## Play it by hand
 
