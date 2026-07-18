@@ -9,6 +9,7 @@ match_size = 4
 max_players = 4
 strategy = "fill"
 bots = { script = "bots/thrower.lua" }
+guest_auth = true
 
 local ROUNDS = 3
 local CHOOSE_TICKS = 100
