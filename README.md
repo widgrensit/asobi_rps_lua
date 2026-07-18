@@ -41,11 +41,13 @@ asobi deploy prod lua
 ```
 
 The browser demo authenticates anonymously via `POST /api/v1/auth/guest`, so
-visitors never create an account. That is opt-in: set `ASOBI_GUEST_AUTH=true`
-and a strong `ASOBI_GUEST_VERIFIER_PEPPER` (a base64 pepper from >= 32 random
-bytes, e.g. `openssl rand -base64 48`) on the environment. A short or raw-bytes
-pepper fails closed. Until it is enabled the endpoint 404s and the samples-page
-widget shows a self-host card instead.
+visitors never create an account. That is opt-in via a two-key model: the game
+sets `guest_auth = true` in `match.lua` (already set here), and the operator
+supplies a strong `ASOBI_GUEST_VERIFIER_PEPPER` (>= 32 bytes). On managed cloud
+the pepper is provisioned per environment automatically; self-hosting, you set it
+yourself. A short or raw-bytes pepper fails closed, and until both halves are
+present the endpoint returns 403 and the samples-page widget shows a self-host
+card instead.
 
 ## Play it by hand
 
